@@ -7,7 +7,7 @@ function z_total = makeLineOfDivots(startPoint,endPoint,numPoints,z_total,a)
     little_vec = big_vec / (numPoints - 1);
     current_point = startPoint;
     for i = 1:numPoints
-        z_total = z_total + makeDivot(current_point,z_total,a);
+        z_total = makeDivot(current_point,z_total,a);
         current_point = current_point + little_vec;
     end 
 end
