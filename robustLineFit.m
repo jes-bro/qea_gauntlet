@@ -1,10 +1,19 @@
-function [fitline_coefs,bestInlierSet,bestOutlierSet,bestEndPoints]= robustLineFit(r,theta,d,n,visualize)
+function [fitline_coefs,bestInlierSet,bestOutlierSet,bestEndPoints]= robustLineFit(r,theta, d,n,visualize)
 %The [fitline_coefs,bestInlierSet,bestOutlierSet,bestEndPoints]= robustLineFit(r,theta,d,n) 
 %function runs the RANSAC algorithm for n candidate lines and a threshold of d. The inputs r and
 %theta are polar coordinates. The output fitline_coefs are the coefficients
 %of the best fit line in the format [m b] where y=m*x+b. If you want
 %to visualize, set visualize flag to 1, off is 0. Default is true.
+% theta = zeros(1, length(r(1,:)));
+% for i=1:length(r(1,:)) 
+%     theta(i) = atan(r(2,i) / r(1,i));
+%     r = 
+% end
+% [x, y] = [r(1, :), r(2, :)];
 
+% r = r';
+% 
+% [theta, r] = cart2pol(r(:, 1), r(:, 2));
  if ~exist('visualize','var')
      % visualize parameter does not exist, so default it to 1
       visualize = 1;
@@ -103,9 +112,9 @@ fitline_coefs=[m b];
 if visualize==1
 
 %plot the polar data as verification
-figure(1)
-polarplot(deg2rad(theta_clean),r_clean,'ks','MarkerSize',6,'MarkerFaceColor','m')
-title('Visualization of Polar Data')
+% figure(1)
+% polarplot(deg2rad(theta_clean),r_clean,'ks','MarkerSize',6,'MarkerFaceColor','m')
+% title('Visualization of Polar Data')
 
 figure(2)
 plot(x,y,'ks')

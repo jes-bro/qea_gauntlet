@@ -1,4 +1,4 @@
-function makeMap()    
+function cartesianPointsInGFrame = makeMap()    
     load('mydata.mat','r_all','theta_all');
 
     % The origin of the Neato frame in the Global frame.
