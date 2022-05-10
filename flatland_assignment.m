@@ -4,7 +4,7 @@ function position = flatland_assignment(z_total)
 wheelBase = 0.235;              % meters
 % this is the scaling factor we apply to the gradient when calculating our
 % step size
-lambda = 0.2;
+lambda = 0.05;
 
 % setup symbolic expressions for the function and gradient
 syms x y;
@@ -36,7 +36,7 @@ shouldStop = false;
 
 while ~shouldStop
     % get the gradient
-    gradValue = double(subs(grad, {x, y}, {position(1), position(2)}));
+    gradValue = -double(subs(grad, {x, y}, {position(1), position(2)}));
     % calculate the angle to turn to align the robot to the direction of
     % gradValue. There are lots of ways to do this. One way is to use the
     % fact that the magnitude of the cross product of two vectors is equal
