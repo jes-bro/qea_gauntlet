@@ -3,12 +3,12 @@ function cartesianPointsInGFrame = makeMap()
 
     % The origin of the Neato frame in the Global frame.
     % Each row corresponds to the origin for a particular scan
-    origins = [0 0; 0 0; 1 0; 0 -2];
+    origins = [0 0; 0 0; 1 0; 0 -2; 1.41 -2.5];
 
     % the orientation of the Neato relative to the Global frame in radians.
     % A positive angle here means the Neato's ihat_N axis was rotated
     % counterclockwise from the ihat_G axis.
-    orientations = [0 pi/6 0 pi/3];
+    orientations = [0 pi/6 0 pi/3 0];
 
     % the origin of the Lidar frame in the Neato frame (ihat_N, jhat_N).
     origin_of_lidar_frame = [-0.084 0];
@@ -38,9 +38,9 @@ function cartesianPointsInGFrame = makeMap()
         rotatedPoints = [cos(orientations(i)) -sin(orientations(i)) 0;...
                          sin(orientations(i)) cos(orientations(i)) 0;...
                          0 0 1]*cartesianPointsInNFrame;
-        figure;
-        scatter(rotatedPoints(1,:), rotatedPoints(2,:));
-        title(['Scan ', num2str(i), ' in Global frame pre-translation']);
+%         figure;
+%         scatter(rotatedPoints(1,:), rotatedPoints(2,:));
+%         title(['Scan ', num2str(i), ' in Global frame pre-translation']);
 
         % translate the points to be relative to the Global origin
         cartesianPointsInGFrame = [1 0 origins(i,1);...
@@ -51,8 +51,10 @@ function cartesianPointsInGFrame = makeMap()
         figure(allScansFig);
         scatter(cartesianPointsInGFrame(1,:), cartesianPointsInGFrame(2,:));
         hold on;
-        title('All scans in Global frame');                              
+        %title('All scans in Global frame');                              
     end
     % display the figure that contains all of the scans
     figure(allScansFig);
+    xlabel("i (m)")
+    ylabel("j (m)")
 end
